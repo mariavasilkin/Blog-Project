@@ -4,16 +4,18 @@ app = Flask(__name__)
 
 @app.route("/", methods=["POST", "GET"])
 def home():
-    title = None
-    blog_post = None
-    if request.method == 'POST':
-        title = request.form["title"].strip()
-        blog_post = request.form["blog_post"].strip()
-    if (title is not None):
-        return render_template("index.html", title = title, blog_post = blog_post)
+    if request.method == "GET":
+        return render_template("index.html")
+    else: #post
+        postTitle = request.args.get("title")
+        postText = request.args.get("posttxt")
+        return render_template("index.html",t = postTitle,txt = postText)
+    
+    
+#@app.route("/post/<blog_post>",methods=["POST", "GET"])
+#def blogPage():
+ #   if 
 
-    return render_template("index.html")
-@app.route("/post/<blog_post>",methods=["POST", "GET"])
-def blogPage():
-    if 
-
+if __name__ == "__main__":
+    app.debug=True
+    app.run();
