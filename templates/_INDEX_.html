@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title> Blog </title>	
-    <link rel="stylesheet" href="static/css/layouts/blog.css" />
-    <!-- <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> -->
+     <!--<link rel="stylesheet" href="static/css/layouts/blog.css" />-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> 
   </head>
   <body>
     <div class="pure-g">
@@ -21,14 +21,15 @@
 	<br><br>
 	<table class="pure-table pure-table-horizontal">
 	  <tr>
-	    <form>
-	      Type in the title of your post:
-	      <input type="text" name="title">
-	      <br><br>
-	      Type in the text of your post:
-	      <input type="text" name="posttxt">
-	      <p>
-		<input type="submit" name="b" value="Post to Blog">
+	    <form class="pure-form">
+	      <fieldset class="pure-group">
+		Enter Post Name: <br> <input type="text" class="pure-input-1-2" placeholder="Post Title">
+		<br><br>
+		Enter Post Content: <br> <textarea placeholder="Post Content", class="pure-input-1-2", rows="20", cols="50" >
+		  </textarea>
+	      </fieldset>
+
+	      <button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Submit</button>
 	    </form>
 	  </tr>
 	  <tr>
