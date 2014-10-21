@@ -16,17 +16,8 @@ q = "CREATE TABLE comments(comment text, id integer)"
 
 result = c.execute(q)
 
-BASE="insert into posts values('%(title)s','%(post)s',%(id)s)"
-for line in csv.DictReader(open("posts.csv")):
-    q = BASE%line
-    print q
-    c.execute(q)
+q = "insert into posts values('%(post)s',%(id)s)"
 
-
-BASE="insert into comments values('%(comment)s',%(id)s)"
-for line in csv.DictReader(open("comments.csv")):
-    q = BASE%line
-    print q
-    c.execute(q)
+q = "insert into comments values('%(comment)s',%(id)s)"
 
 conn.commit()
