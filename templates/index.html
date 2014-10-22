@@ -1,4 +1,4 @@
-`<!doctype html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -17,29 +17,34 @@
     }
     .main{
     font-size:25px;
-    background:#d4d4d4;
+    background-image: linear-gradient(granite,white);
+    color:#4a1e63;
     }
     .title{
-    float:center;
     font-size:45px;
     maxlength:40;
     width:50%;
     }
     .text{
-    float:center;
     font-size:20px;
     padding:20px;
     width: 75%;
     maxlength:5000;
     }
+    .image{
+    margin: 0 auto;
+    width:75%;
+    height:auto;  
+    }
   </style>
 
   <body>
     {% block bodycontent %}
-    <div class="sidebar pure-g">
+    <div class=" pure-g">
       <div class="sidebar pure-u-1-5">
 	Bob Loblaw's Law  Blog 
-	
+	<br>
+	<img class= "image", src="http://img3.wikia.nocookie.net/__cb20121117203508/arresteddevelopment/images/e/e6/3x3_Bob_Loblaw.png">
       </div>
       <div class="main pure-u-4-5">
 	<br><br>
