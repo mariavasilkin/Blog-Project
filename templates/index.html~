@@ -9,6 +9,7 @@
 	<!-- <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> -->
 	</head>
 <body>
+  {% block bodycontent %}
 	<form>
 	  Type in the title of your post:
 	  <input type="text" name="title">
@@ -20,4 +21,5 @@
 	    </form>
 	<br><br>{{t}}<br>{{txt}}
 	</body>
+{% endblock bodycontent %}
 </html>

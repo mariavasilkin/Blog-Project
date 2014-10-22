@@ -1,25 +1,69 @@
-<!doctype html>
+`<!doctype html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title> Blog </title>	
-	<link rel="stylesheet" href="static/css/layouts/blog.css" />
-	<!-- <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> -->
-	</head>
-<body>
-  {% block bodycontent %}
-	<form>
-	  Type in the title of your post:
-	  <input type="text" name="title">
-	  <br><br>
-	  Type in the text of your post:
-	  <input type="text" name="posttxt">
-	  <p>
-	    <input type="submit" name="b" value="Post to Blog">
+    <title> Blog </title>	
+    <!--<link rel="stylesheet" href="static/css/layouts/blog.css" />-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> 
+  </head>
+
+  <style>
+    .sidebar{
+    color:#d4d4d4;
+    font-size:40px;
+    background:#4a1e63;
+    }
+    .main{
+    font-size:25px;
+    background:#d4d4d4;
+    }
+    .title{
+    float:center;
+    font-size:45px;
+    maxlength:40;
+    width:50%;
+    }
+    .text{
+    float:center;
+    font-size:20px;
+    padding:20px;
+    width: 75%;
+    maxlength:5000;
+    }
+  </style>
+
+  <body>
+    {% block bodycontent %}
+    <div class="sidebar pure-g">
+      <div class="sidebar pure-u-1-5">
+	Bob Loblaw's Law  Blog 
+	
+      </div>
+      <div class="main pure-u-4-5">
+	<br><br>
+	<table class="pure-table pure-table-horizontal">
+	  <tr>
+	    <form class="pure-form">
+	      <fieldset class="pure-group">
+		Enter Post Name:
+		<br> 
+		<input type="text"  class="title pure-input-1-2", placeholder="Post Title">
+		<br><br>
+		<input type="text"  class="text pure-input-1-2", placeholder="Post Content" >
+	      </fieldset>
+	      <button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Submit</button>
 	    </form>
-	<br><br>{{t}}<br>{{txt}}
-	</body>
-{% endblock bodycontent %}
+	  </tr>
+	  <tr>
+	    <h2>{{t}}</h2>
+	    <br>
+	    {{txt}}
+	  </tr>
+	</table>
+      </div>
+    </div>
+  </body>
+  {% endblock bodycontent %}
 </html>
