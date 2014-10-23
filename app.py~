@@ -24,10 +24,8 @@ app = Flask(__name__)
 
 @app.route("/", methods=["POST", "GET"])
 def home():
-        dic = {"key1":"value1","key2":"value2","key3":"value3"}
-        #dic is just for testing so yeah
     if request.method == "GET":
-        return render_template("index.html",dic=dic,postBoolean = False)
+        return render_template("index.html",postBoolean = False)
     else: #post
         postTitle = request.args.get("title")
         postText = request.args.get("posttxt")
