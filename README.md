@@ -1,6 +1,8 @@
 Blog-Project
 ============
 
+Hmmm so the issue we are having right now is that we can't figure out how to get the submit button to connect to the SQL and actually add the text that is in the title and post textareas. Once we figure that out it is a simple fix to have them written onto the page, and then the table process will be similar to get individual posts and their comments. However, without the submit button, we are stuck on how to move forward.
+
 Here it is:
 
 It's a simple blog engine.
