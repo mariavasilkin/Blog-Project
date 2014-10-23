@@ -14,7 +14,7 @@ q = "CREATE TABLE posts(title text, post text, id integer)"
 
 result = c.execute(q)
 
-q = "CREATE TABLE comments(comment text, id integer)"
+q = "CREATE TABLE comments(comment text, postid integer, commentid integer)"
 
 result = c.execute(q)
 
@@ -24,18 +24,20 @@ app = Flask(__name__)
 
 @app.route("/", methods=["POST", "GET"])
 def home():
-        dic = {"key1":"value1","key2":"value2","key3":"value3"}
+        dic = {"Post 1":"Content 1","Post 2":"Content 2"}
         #dic is just for testing so yeah
         if request.method == "GET":
                 return render_template("index.html",dic=dic,postBoolean = False)
         else: #post
                 postTitle = request.args.get("title")
                 postText = request.args.get("posttxt")
-                q = "insert into posts values(" + postTitle + ", " + postText + ", 0)"
+                i=0
+                q = "insert into posts values(" + postTitle + ", " + postText + ", i)"
+                i=i+1
                 c.execute(q)
                 conn.commit()
                 return render_template("index.html",postBoolean = True)
-    
+
     
 @app.route("/<title>",methods=["POST", "GET"])
 def blogPage():
@@ -44,7 +46,9 @@ def blogPage():
         else:#I think this should be different if you just added a comment
                 comment = request.args.get("comment")
                 id = request.args.get("post.id") #this may be way off
-                q = "insert into posts values(" + comment + ", " + post.id + ", 0)"
+                j=0
+                q = "insert into comments values(" + comment + ", " + post.id + ", j)"
+                j=j+1
                 c.execute(q)
                 conn.commit()
                 return render_template("post.hmtl",title=title)
