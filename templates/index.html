@@ -64,11 +64,11 @@
 	      <button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Submit</button>
 	    </form>
 	  </tr>
-	  {% for key in dic %}
+	  {% for item in thing %}
 	  <tr>
-	    <h2><a href="/{{key}}"> {{key}} </a> </h2> <!-- is this right?-->
+	    <h2><a href="/{{key}}"> item </a> </h2> <!-- is this right?-->
 	    <br>
-	    {{dic[key]}}
+	    {{item}}
 	  </tr>
 	  {% endfor %}
 	</table>

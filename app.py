@@ -26,9 +26,12 @@ result = c.execute("SELECT title FROM posts")
 for row in result:
         print row
 
+thing = []
+for row in result:
+        thing.append(row)
+
 @app.route("/", methods=["POST", "GET"])
 def home():
-        dic = c.execute("SELECT title FROM posts")
         #dic is just for testing so yeah
         if request.method == "GET":
                 return render_template("index.html",thing=thing, postBoolean = False)
