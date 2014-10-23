@@ -22,12 +22,16 @@ conn.commit()
 
 app = Flask(__name__)
 
+result = c.execute("SELECT title FROM posts")
+for row in result:
+        print row
+
 @app.route("/", methods=["POST", "GET"])
 def home():
-        dic = {"Post 1":"Content 1","Post 2":"Content 2"}
+        dic = c.execute("SELECT title FROM posts")
         #dic is just for testing so yeah
         if request.method == "GET":
-                return render_template("index.html",dic=dic,postBoolean = False)
+                return render_template("index.html",thing=thing, postBoolean = False)
         else: #post
                 postTitle = request.args.get("title")
                 postText = request.args.get("posttxt")
