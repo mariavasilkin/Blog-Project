@@ -26,15 +26,15 @@ app = Flask(__name__)
 def home():
         dic = {"key1":"value1","key2":"value2","key3":"value3"}
         #dic is just for testing so yeah
-    if request.method == "GET":
-        return render_template("index.html",dic=dic,postBoolean = False)
-    else: #post
-        postTitle = request.args.get("title")
-        postText = request.args.get("posttxt")
-        q = "insert into posts values(" + postTitle + ", " + postText + ", 0)"
-        c.execute(q)
-        conn.commit()
-        return render_template("index.html",postBoolean = True)
+        if request.method == "GET":
+                return render_template("index.html",dic=dic,postBoolean = False)
+        else: #post
+                postTitle = request.args.get("title")
+                postText = request.args.get("posttxt")
+                q = "insert into posts values(" + postTitle + ", " + postText + ", 0)"
+                c.execute(q)
+                conn.commit()
+                return render_template("index.html",postBoolean = True)
     
     
 #@app.route("/post/<blog_post>",methods=["POST", "GET"])
