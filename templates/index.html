@@ -55,13 +55,13 @@
 	      <fieldset class="pure-group">
 		Enter Post Name:
 		<br> 
-		<input type="text"  class="title pure-input-1-2", placeholder="Post Title">
+		<input type="text"  class="title pure-input-1-2", name="title", placeholder="Post Title">
 		<br><br>
 		Enter Post Content:
-		<textarea rows="20", cols="20"  class="text pure-input-1-2", placeholder="Post Content" ></textarea>
+		<textarea rows="20", cols="20"  name="post", class="text pure-input-1-2", placeholder="Post Content" ></textarea>
 	      </fieldset>
 	      <br>
-	      <button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Submit</button>
+	      <button href="/run" type="submit" class="pure-button pure-input-1-2 pure-button-primary">Submit</button>
 	    </form>
 	  </tr>
 	  {% for item in thing %}
