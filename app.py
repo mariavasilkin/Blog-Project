@@ -2,36 +2,44 @@ from flask import Flask, render_template, request
 
 import sqlite3
 import csv
-conn = sqlite3.connect("test.db")
 
-c = conn.cursor()
-
-c.execute("drop table posts")
-
-c.execute("drop table comments")
-
-q = "CREATE TABLE posts(title text, post text, id integer)"
-
-result = c.execute(q)
-
-q = "CREATE TABLE comments(comment text, postid integer, commentid integer)"
-
-result = c.execute(q)
-
-conn.commit()
 
 app = Flask(__name__)
 
+<<<<<<< HEAD
+=======
 result = c.execute("SELECT title FROM posts")
 for row in result:
         print row
 
 thing = []
 
+>>>>>>> f6954f61fc31c3469a303a6f5ce6f3c3ce90f221
 @app.route("/", methods=["POST", "GET"])
 def home():
+        conn = sqlite3.connect("test.db")
+        c = conn.cursor()
         #dic is just for testing so yeah
         if request.method == "GET":
+<<<<<<< HEAD
+                q = "SELECT * FROM posts"
+                result = c.execute(q)
+                postList = result.fetchall()
+                return render_template("index.html",pl = postList)
+        else: #post
+                title = request.form["postTitle"]
+                text = request.form["postText"]
+                q = "SELECT count(*) FROM posts" 
+                result = c.execute(q)
+                i = str(result.fetchone()[0])
+                q = "INSERT INTO posts VALUES(?,?,?)"
+                c.execute(q,[title,text,i])
+                conn.commit()
+                q = "SELECT * FROM posts"
+                result = c.execute(q)
+                postList = result.fetchall()
+                return render_template("index.html",pl = postList)
+=======
                 print thing
                 if len(thing)==0:
                         print "nope"
@@ -48,6 +56,7 @@ def home():
                 if len(thing) == 0:
                         print "nope"
                 return render_template("index.html",postBoolean = True)
+>>>>>>> f6954f61fc31c3469a303a6f5ce6f3c3ce90f221
 
 @app.route("/run", methods=["POST", "GET"])
 def run():
@@ -60,18 +69,32 @@ def run():
         return render_template("index.html", postBoolean=true)
     
 @app.route("/<title>",methods=["POST", "GET"])
-def blogPage():
+def blogPage(title):
+        conn = sqlite3.connect("test.db")
+        c = conn.cursor()
         if request.method == "GET":
-                return render_template("post.html",title=title)
-        else:#I think this should be different if you just added a comment
-                comment = request.args.get("comment")
-                id = request.args.get("post.id") #this may be way off
-                j=0
-                q = "insert into comments values(" + comment + ", " + post.id + ", j)"
-                j=j+1
-                c.execute(q)
+                q = "SELECT * FROM posts WHERE title=?"
+                result = c.execute(q,[title])
+                p = result.fetchone()
+                q = "SELECT * FROM comments WHERE postid=?"
+                result = c.execute(q,[title])
+                comments = result.fetchall()
+                return render_template("post.html",title=title,post=p,cl=comments)
+        else:
+                comment = request.form["comment"]
+                q = "SELECT count(*) FROM comments WHERE postid=?"
+                result = c.execute(q,[title])
+                i = str(result.fetchone()[0])
+                q = "INSERT INTO comments VALUES(?,?,?)"
+                c.execute(q,[comment,title,i])
                 conn.commit()
-                return render_template("post.hmtl",title=title)
+                q = "SELECT * FROM comments WHERE postid=?"
+                result = c.execute(q,[title])
+                comments = result.fetchall()
+                q = "SELECT * FROM posts WHERE title=?"
+                result = c.execute(q,[title])
+                p = result.fetchone()
+                return render_template("post.html",title=title,cl = comments,post=p)
 
 if __name__ == "__main__":
     app.debug=True

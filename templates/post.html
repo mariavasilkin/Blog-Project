@@ -47,6 +47,7 @@
 	<img class= "image", src="http://img3.wikia.nocookie.net/__cb20121117203508/arresteddevelopment/images/e/e6/3x3_Bob_Loblaw.png">
       </div>
       <div class="main pure-u-4-5">
+	<h1>{{post[0]}}</h1><br><br>{{post[1]}}
 	<br><br>
 	<table class="pure-table pure-table-horizontal">
 	  <tr>
@@ -61,24 +62,30 @@
 	    Leave a Comment
 	  </tr>
 	  <tr>
-	    <form class="pure-form">
+	    <form class="pure-form" method = "POST">
 	      <fieldset class="pure-group">
 		<br> 
-		<input type="text"  class="comments pure-input-1-2", placeholder="type here...">
+		<input type="text" name="comment"  class="comments pure-input-1-2", placeholder="type here...">
 		<!--Save w SQL as comment-->
 		<br><br>
 	      </fieldset>
 	      <button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Add Comment</button>
+	      <a href="/">Back to home</a>
 	    </form>
 	  </tr>
+	 
+	  {% for item in cl %}
 	  <tr>
+	    <h2>{{item[0]}}</h2> <!-- is this right?-->
 	    <br>
-	    {{comments}}
 	  </tr>
-
+	  {% endfor %}
+	  </tr>
+	  
 	</table>
       </div>
     </div>
+
   </body>
   {% endblock bodycontent %}
 </html>
